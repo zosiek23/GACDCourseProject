@@ -53,8 +53,7 @@ colnames(run.all_data) <- c("subject_id", "activity_labels", column.names)
 # Want to display the subject and label columns.
 # Exclude columns with freq and angle in the name.
 run.all_data <- select(run.all_data, contains("subject_id"), contains("labels"),
-                   contains("mean()"), contains("std()"), -contains("meanFreq()"),
-                   -contains("angle"))
+                   contains("mean()"), contains("std()"))
 
 # Read in the activity labels dataset
 activity.labels <- read.csv("UCI HAR Dataset/activity_labels.txt", 
@@ -71,7 +70,7 @@ run.all_data$activity_labels <- as.character(activity.labels[
 # Appropriately labels the data set with descriptive variable names. 
 setnames(run.all_data, colnames(run.all_data), gsub("\\(\\)", "", colnames(run.all_data)))
 setnames(run.all_data, colnames(run.all_data), gsub("-", "_", colnames(run.all_data)))
-setnames(run.all_data, colnames(run.all_data), gsub("BodyBody", "Body", colnames(run.all_data)))
+#setnames(run.all_data, colnames(run.all_data), gsub("BodyAcc", "Body", colnames(run.all_data)))
 
 # Group the running data by subject and activity, then
 # calculate the mean of every measurement.
